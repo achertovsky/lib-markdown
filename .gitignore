@@ -4,3 +4,4 @@ vendor
 composer.lock
 infection.json5
 var/infection
+.phpunit.cache
