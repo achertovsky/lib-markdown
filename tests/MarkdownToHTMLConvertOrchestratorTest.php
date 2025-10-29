@@ -46,7 +46,9 @@ class MarkdownToHTMLConvertOrchestratorTest extends TestCase
         $this->orchestrator->convert($input);
 
         $this->assertEquals(
-            $expectedLines,
+            [
+                $expectedLines
+            ],
             $this->converterFake->convertCalledWith
         );
     }
@@ -61,16 +63,16 @@ class MarkdownToHTMLConvertOrchestratorTest extends TestCase
         $this->orchestrator->convert($input);
     }
 
-    // public function testInputHasTextHtmlFormatting(): void
-    // {
-    //     $input = 'This is a paragraph with <strong>bold</strong> text.';
-    //     $expectedOutput = 'This is a paragraph with <strong>bold</strong> text.';
+    public function testInputHasTextHtmlFormatting(): void
+    {
+        $input = 'This is a paragraph with <strong>bold</strong> text.';
+        $expectedOutput = 'This is a paragraph with <strong>bold</strong> text.';
 
-    //     $this->assertEquals(
-    //         $expectedOutput,
-    //         $this->converter->convert($input)
-    //     );
-    // }
+        $this->assertEquals(
+            $expectedOutput,
+            $this->orchestrator->convert($input)
+        );
+    }
 
     // #[DataProvider('dataConvertsParagraphs')]
     // public function testConvertsParagraphs(

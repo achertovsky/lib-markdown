@@ -7,9 +7,15 @@ namespace achertovsky\markdown;
 use achertovsky\markdown\Converter\ConverterInterface;
 use achertovsky\markdown\Exception\MarkdownException;
 use achertovsky\markdown\DTO\Lines;
+use achertovsky\markdown\Validator\MarkdownInputValidator;
 
 class MarkdownToHTMLConvertOrchestrator
 {
+    public function __construct(
+        private MarkdownInputValidator $validator = new MarkdownInputValidator(),
+    ) {
+    }
+
     /**
      * @var ConverterInterface[]
      */
@@ -30,7 +36,7 @@ class MarkdownToHTMLConvertOrchestrator
         );
         $lines = new Lines($linesArray);
         $this->processEmptyLines($lines);
-        $this->validate($lines);
+        $this->validator->validate($lines);
 
         foreach ($this->converters as $converter) {
             $converter->convert($lines);
@@ -48,15 +54,6 @@ class MarkdownToHTMLConvertOrchestrator
             if (trim($line) === '') {
                 $lines->removeLineFromLeftovers($index);
                 $lines->addLineToProcessed($index, '');
-            }
-        }
-    }
-
-    private function validate(Lines $lines): void
-    {
-        foreach ($lines->getLinesLeftToProcess() as $line) {
-            if (preg_match('/<[^>]+>/', $line)) {
-                MarkdownException::throwInputHasHtmlFormatting();
             }
         }
     }

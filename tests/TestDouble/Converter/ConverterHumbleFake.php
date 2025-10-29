@@ -9,10 +9,18 @@ use achertovsky\markdown\DTO\Lines;
 
 class ConverterHumbleFake implements ConverterInterface
 {
-    public ?Lines $convertCalledWith = null;
+    /**
+     * @var Lines[]
+     */
+    public array $convertCalledWith = [];
 
     public function convert(Lines $lines): void
     {
-        $this->convertCalledWith = $lines;
+        $this->convertCalledWith[] = clone $lines;
+
+        foreach ($lines->getLinesLeftToProcess() as $index => $line) {
+            $lines->removeLineFromLeftovers($index);
+            $lines->addLineToProcessed($index, $line);
+        }
     }
 }
