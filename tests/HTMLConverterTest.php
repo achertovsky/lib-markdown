@@ -55,24 +55,6 @@ class HTMLConverterTest extends TestCase
                 '###### Heading 6',
                 '<h6>Heading 6</h6>',
             ],
-            [
-                sprintf(
-                    "%s\n%s\n%s\n%s\n%s",
-                    'not a heading',
-                    '',
-                    '### Heading',
-                    '',
-                    'not a heading'
-                ),
-                sprintf(
-                    "%s\n%s\n%s\n%s\n%s",
-                    'not a heading',
-                    '',
-                    '<h3>Heading</h3>',
-                    '',
-                    'not a heading'
-                ),
-            ],
             'wont tolerate missing whitespace' => [
                 '#Heading',
                 '#Heading',
@@ -80,17 +62,45 @@ class HTMLConverterTest extends TestCase
             'wont tolerate missing lines before and after heading' => [
                 sprintf(
                     "%s\n%s\n%s",
-                    'not a heading',
+                    '# heading',
                     '### Heading',
-                    'not a heading'
+                    '# heading'
                 ),
                 sprintf(
                     "%s\n%s\n%s",
-                    'not a heading',
+                    '# heading',
                     '### Heading',
-                    'not a heading'
+                    '# heading'
                 ),
-            ]
+            ],
+            'previous line does not exist and still heading' => [
+                sprintf(
+                    "%s\n%s\n%s",
+                    '# Heading',
+                    '',
+                    'Some text'
+                ),
+                sprintf(
+                    "%s\n%s\n%s",
+                    '<h1>Heading</h1>',
+                    '',
+                    'Some text'
+                ),
+            ],
+            'next line does not exist and still heading' => [
+                sprintf(
+                    "%s\n%s\n%s",
+                    'Some text',
+                    '',
+                    '## Heading'
+                ),
+                sprintf(
+                    "%s\n%s\n%s",
+                    'Some text',
+                    '',
+                    '<h2>Heading</h2>'
+                ),
+            ],
         ];
     }
 }
