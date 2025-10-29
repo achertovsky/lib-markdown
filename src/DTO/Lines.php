@@ -12,10 +12,25 @@ class Lines
     ) {
     }
 
-    public function moveLineToProcessed(int $index): void
+    public function getLinesLeftToProcess(): array
     {
-        $line = $this->linesLeftToProcess[$index];
+        return $this->linesLeftToProcess;
+    }
+
+    public function getLineLeftToProcess(int $index): ?string
+    {
+        return $this->linesLeftToProcess[$index] ?? null;
+    }
+
+    public function removeLineFromLeftovers(int $index): void
+    {
         unset($this->linesLeftToProcess[$index]);
+    }
+
+    public function addLineToProcessed(
+        int $index,
+        string $line
+    ): void {
         $this->processedLines[$index] = $line;
     }
 
@@ -27,5 +42,10 @@ class Lines
         ksort($this->processedLines);
 
         return $this->processedLines;
+    }
+
+    public function getProcessedLine(int $index): ?string
+    {
+        return $this->processedLines[$index] ?? null;
     }
 }
