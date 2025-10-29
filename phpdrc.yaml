@@ -1,3 +1,5 @@
 namespaces:
-  App\Core: []
-exclude: []
+  achertovsky\markdown: []
+exclude:
+  - vendor
+  - var

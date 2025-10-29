@@ -13,4 +13,5 @@
 
     <exclude-pattern>src/</exclude-pattern>
     <exclude-pattern>vendor/</exclude-pattern>
+    <exclude-pattern>var/</exclude-pattern>
 </ruleset>

@@ -344,4 +344,5 @@
     <!-- The opening brace MAY be on the same line as the class keyword so long as the list of implements interfaces does not wrap. If the list of interfaces wraps, the brace MUST be placed on the line immediately following the last interface. -->
     <!-- checked by PSR12.Classes.AnonClassDeclaration -->
     <exclude-pattern>vendor/</exclude-pattern>
+    <exclude-pattern>var/</exclude-pattern>
 </ruleset>
