@@ -4,41 +4,60 @@ declare(strict_types=1);
 
 namespace achertovsky\markdown;
 
+use achertovsky\markdown\Converter\ConverterInterface;
 use achertovsky\markdown\Exception\MarkdownException;
+use achertovsky\markdown\DTO\Lines;
 
 class MarkdownToHTMLConvertOrchestrator
 {
-    public function convert(string $text): string
+    /**
+     * @var ConverterInterface[]
+     */
+    private array $converters = [];
+
+    public function addConverter(ConverterInterface $converter): self
     {
-        $this->validate($text);
+        $this->converters[] = $converter;
 
-        $text = $this->convertParagraphs($text);
-
-        return $text;
+        return $this;
     }
 
-    private function validate(string $text): void
+    public function convert(string $text): string
     {
-        $lines = explode("\n", $text);
-        foreach ($lines as $line) {
+        $linesArray = explode(
+            "\n",
+            $text
+        );
+        $lines = new Lines($linesArray);
+        $this->processEmptyLines($lines);
+        $this->validate($lines);
+
+        foreach ($this->converters as $converter) {
+            $converter->convert($lines);
+        }
+
+        return implode(
+            "\n",
+            $lines->getProcessedLines()
+        );
+    }
+
+    private function processEmptyLines(Lines $lines): void
+    {
+        foreach ($lines->getLinesLeftToProcess() as $index => $line) {
+            if (trim($line) === '') {
+                $lines->removeLineFromLeftovers($index);
+                $lines->addLineToProcessed($index, '');
+            }
+        }
+    }
+
+    private function validate(Lines $lines): void
+    {
+        foreach ($lines->getLinesLeftToProcess() as $line) {
             if (preg_match('/<[^>]+>/', $line)) {
                 MarkdownException::throwInputHasHtmlFormatting();
             }
         }
-    }
-
-    private function convertParagraphs(string $text): string
-    {
-        $lines = explode("\n", $text);
-        foreach ($lines as $index => &$line) {
-            if (
-                trim($line) !== '' &&
-                !preg_match('/^<h[1-6]>.*<\/h[1-6]>$/', $line)
-            ) {
-                $line = sprintf('<p>%s</p>', trim($line));
-            }
-        }
-
-        return implode("\n", $lines);
     }
 }

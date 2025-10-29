@@ -19,9 +19,9 @@ class MarkdownToHTMLConvertOrchestratorTest extends TestCase
     {
         $this->converterFake = new ConverterHumbleFake();
 
-        $this->orchestrator = new MarkdownToHTMLConvertOrchestrator(
-            $this->converterFake
-        );
+        $this->orchestrator = new MarkdownToHTMLConvertOrchestrator();
+
+        $this->orchestrator->addConverter($this->converterFake);
     }
 
     public function testEmptyLinesWouldBeProcessedBeforePassingToConvertersChain(): void
