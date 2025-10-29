@@ -16,7 +16,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "achertovsky\\markdown\\tests\\": "tests/"
+            "tests\\": "tests/"
         }
     },
     "config": {

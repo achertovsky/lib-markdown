@@ -1,5 +1,9 @@
 namespaces:
   achertovsky\markdown: []
+  tests:
+    - achertovsky\markdown
+    - PHPUnit\Framework\TestCase
+    - PHPUnit\Framework\Attributes\DataProvider
 exclude:
   - vendor
   - var

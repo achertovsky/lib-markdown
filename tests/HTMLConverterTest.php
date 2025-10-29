@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace achertovsky\markdown\tests;
+namespace tests;
 
 use PHPUnit\Framework\TestCase;
 use achertovsky\markdown\HTMLConverter;
@@ -28,6 +28,9 @@ class HTMLConverterTest extends TestCase
         );
     }
 
+    /**
+     * @return array<int|string, array{0: string, 1: string}>
+     */
     public static function dataConvertsHeading(): array
     {
         return [

@@ -38,6 +38,9 @@ class HTMLConverter
         return implode("\n", $lines);
     }
 
+    /**
+     * @param string[] $lines
+     */
     private function previosAndNextLineIsEmptyLines(
         array $lines,
         int $currentLineIndex
