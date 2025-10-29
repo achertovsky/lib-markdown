@@ -1,0 +1,3 @@
+namespaces:
+  App\Core: []
+exclude: []

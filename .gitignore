@@ -1,0 +1,5 @@
+.phpunit.result.cache
+vendor
+.vscode
+composer.lock
+infection.json5

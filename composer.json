@@ -1,0 +1,27 @@
+{
+    "name": "achertovsky/lib-markdown",
+    "version": "0.1.0",
+    "description": "Markdown converting POPO library",
+    "require": {
+        "php": "^8.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^12",
+        "achertovsky/phptools": "^0.5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "achertovsky\\markdown\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "achertovsky\\markdown\\tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "infection/extension-installer": true
+        }
+    }
+}
