@@ -46,8 +46,12 @@ class HeadingConverter implements ConverterInterface
         $previousLineIndex = $currentLineIndex - 1;
         $nextLineIndex = $currentLineIndex + 1;
 
-        $previousLine = $lines->getProcessedLine($previousLineIndex) ?? $lines->getLineLeftToProcess($previousLineIndex);
-        $nextLine = $lines->getProcessedLine($nextLineIndex) ?? $lines->getLineLeftToProcess($nextLineIndex);
+        $previousLine = $lines->getProcessedLine($previousLineIndex)
+            ?? $lines->getLineLeftToProcess($previousLineIndex)
+        ;
+        $nextLine = $lines->getProcessedLine($nextLineIndex)
+            ?? $lines->getLineLeftToProcess($nextLineIndex)
+        ;
 
         $isPreviousLineEmpty = $previousLine === null || trim($previousLine) === '';
         $isNextLineEmpty = $nextLine === null || trim($nextLine) === '';

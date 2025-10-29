@@ -1,5 +1,6 @@
 namespaces:
-  achertovsky\markdown: []
+  achertovsky\markdown:
+    - RuntimeException
   tests:
     - achertovsky\markdown
     - PHPUnit\Framework\TestCase

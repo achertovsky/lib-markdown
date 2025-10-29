@@ -6,12 +6,19 @@ namespace achertovsky\markdown\DTO;
 
 class Lines
 {
+    /**
+     * @param string[] $linesLeftToProcess
+     * @param string[] $processedLines
+     */
     public function __construct(
         private array $linesLeftToProcess,
         private array $processedLines = []
     ) {
     }
 
+    /**
+     * @return string[]
+     */
     public function getLinesLeftToProcess(): array
     {
         return $this->linesLeftToProcess;
