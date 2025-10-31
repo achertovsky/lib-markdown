@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace achertovsky\markdown;
+namespace achertovsky\markdown\Orchestrator;
 
 use achertovsky\markdown\Converter\ConverterInterface;
-use achertovsky\markdown\Exception\MarkdownException;
 use achertovsky\markdown\DTO\Lines;
 use achertovsky\markdown\Validator\MarkdownInputValidator;
 

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace tests;
+namespace tests\Orchestrator;
 
 use PHPUnit\Framework\TestCase;
 use tests\TestDouble\Converter\ConverterHumbleFake;
 use achertovsky\markdown\Exception\MarkdownException;
-use achertovsky\markdown\MarkdownToHTMLConvertOrchestrator;
+use achertovsky\markdown\Orchestrator\MarkdownToHTMLConvertOrchestrator;
 use achertovsky\markdown\DTO\Lines;
 
 class MarkdownToHTMLConvertOrchestratorTest extends TestCase
