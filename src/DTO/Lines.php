@@ -7,8 +7,8 @@ namespace achertovsky\markdown\DTO;
 class Lines
 {
     /**
-     * @param string[] $linesLeftToProcess
-     * @param string[] $processedLines
+     * @param array<int, string> $linesLeftToProcess
+     * @param array<int, string> $processedLines
      */
     public function __construct(
         private array $linesLeftToProcess,

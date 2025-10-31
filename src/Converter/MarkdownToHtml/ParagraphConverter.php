@@ -12,6 +12,10 @@ class ParagraphConverter implements ConverterInterface
     public function convert(Lines $input): void
     {
         $lines = $input->getLinesLeftToProcess();
+        if ($lines === []) {
+            return;
+        }
+        /** @var non-empty-array<int, string> $lines */
         $paragraphs = [];
         $currentParagraphIndex = 0;
         $maxIndex = max(array_keys($lines));

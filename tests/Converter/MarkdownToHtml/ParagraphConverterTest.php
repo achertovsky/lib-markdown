@@ -18,6 +18,18 @@ class ParagraphConverterTest extends TestCase
         $this->converter = new ParagraphConverter();
     }
 
+    public function testWithEmptyArrayWontDoAThing(): void
+    {
+        $input = new Lines([]);
+
+        $this->converter->convert($input);
+
+        $this->assertEquals(
+            new Lines([]),
+            $input
+        );
+    }
+
     #[DataProvider('dataConvertsParagraph')]
     public function testConvertsParagraph(
         Lines $input,

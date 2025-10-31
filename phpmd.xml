@@ -10,7 +10,9 @@
     <rule ref="rulesets/codesize.xml" />
     <rule ref="rulesets/controversial.xml" />
     <rule ref="rulesets/design.xml" />
-    <rule ref="rulesets/naming.xml" />
+    <rule ref="rulesets/naming.xml" >
+        <exclude name="LongVariable" />
+    </rule>
     <rule ref="rulesets/unusedcode.xml" />
 
     <exclude-pattern>tests/</exclude-pattern>
