@@ -53,7 +53,7 @@ class MarkdownToHTMLConvertOrchestratorTest extends TestCase
         );
     }
 
-    public function testInputHasNoHtmlFormatting(): void
+    public function testInputHasNoLineWrappingHtmlFormatting(): void
     {
         $this->expectExceptionMessage(MarkdownException::INPUT_HAS_HTML_FORMATTING);
         $this->expectException(MarkdownException::class);
