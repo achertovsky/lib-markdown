@@ -12,7 +12,7 @@ class MarkdownInputValidator
     public static function validate(Lines $lines): void
     {
         foreach ($lines->getLinesLeftToProcess() as $line) {
-            if (preg_match('/^<[^>]+>/', $line)) {
+            if (preg_match('/<[^>]+>/', $line)) {
                 MarkdownException::throwInputHasHtmlFormatting();
             }
         }

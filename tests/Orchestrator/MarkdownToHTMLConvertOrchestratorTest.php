@@ -65,12 +65,11 @@ class MarkdownToHTMLConvertOrchestratorTest extends TestCase
 
     public function testInputHasTextHtmlFormatting(): void
     {
-        $input = 'This is a paragraph with <strong>bold</strong> text.';
-        $expectedOutput = 'This is a paragraph with <strong>bold</strong> text.';
+        $this->expectExceptionMessage(MarkdownException::INPUT_HAS_HTML_FORMATTING);
+        $this->expectException(MarkdownException::class);
 
-        $this->assertEquals(
-            $expectedOutput,
-            $this->orchestrator->convert($input)
-        );
+        $input = 'This is a paragraph with <strong>bold</strong> text.';
+
+        $this->orchestrator->convert($input);
     }
 }

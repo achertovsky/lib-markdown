@@ -118,6 +118,32 @@ class ParagraphConverterTest extends TestCase
                     ]
                 ),
             ],
+            'converts two whitespaces into line break' => [
+                new Lines(
+                    [
+                        'This is a paragraph with  two spaces.',
+                    ]
+                ),
+                new Lines(
+                    [],
+                    [
+                        '<p>This is a paragraph with<br>two spaces.</p>',
+                    ]
+                ),
+            ],
+            'converts multiple whitespaces into line break' => [
+                new Lines(
+                    [
+                        'This is a paragraph with    multiple spaces.',
+                    ]
+                ),
+                new Lines(
+                    [],
+                    [
+                        '<p>This is a paragraph with<br>multiple spaces.</p>',
+                    ]
+                ),
+            ],
         ];
     }
 }
